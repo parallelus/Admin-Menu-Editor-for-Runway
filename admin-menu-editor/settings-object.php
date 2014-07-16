@@ -9,7 +9,7 @@ class Admin_Dashboard_Admin_Object extends Runway_Admin_Object {
 
 		$this->option_key = $settings['option_key'];
 
-		add_action( 'admin_head', array( &$this, 'hook_menu' ) );
+		add_action( 'admin_head', array( $this, 'hook_menu' ) );
 		// catching ajax-query and create $menu_settings array
 		$menu_settings = array( 'menu' => array(), 'removed' => array() ); // contains base menu items and removed menu items
 
