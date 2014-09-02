@@ -6,10 +6,6 @@
 	Description: Manage your WordPress admin menus and create custom theme menus.
 	Author: Parallelus
 	Author URI: http://para.llel.us
-	Text Domain:
-	Domain Path:
-	Network:
-	Site Wide Only:
 */
 
 // Settings
