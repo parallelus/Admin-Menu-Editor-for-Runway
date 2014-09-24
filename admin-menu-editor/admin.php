@@ -1,3 +1,10 @@
+<?php
+if( isset($_GET['reset']) && $_GET['reset'] ) {
+	require_once(get_template_directory().'/extensions/admin-menu-editor/templates/reset-confirmation.php'); 
+	die();
+}
+?>
+
 <?php global $admin_Dashboard_Admin, $admin_dashboard_settings, $menu, $submenu, $wp_roles, $orig_menu, $orig_sub_menu, $wp_roles, $cm; ?>
 <?php include_once FRAMEWORK_DIR.'extensions/admin-menu-editor/js/admin-js.php'; ?>
 

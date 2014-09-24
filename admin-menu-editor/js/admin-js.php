@@ -222,14 +222,8 @@
 				itemRemoveEvent($(this).closest('li'));
 			});
 
-			$('.reset-menu').click(function () {
-				$.ajax({
-					url: "<?php echo admin_url('admin.php?page=admin-menu'); ?>",
-					data: {reset: true},
-					success: function (data) {
-						location.reload();
-					}
-				});
+			$('.reset-menu').click(function () {console.log("<?php echo admin_url('admin.php?page=admin-menu'); ?>");
+    			window.location = 'admin.php?page=admin-menu&reset=true';
 			});
 
 			$('.ajax-save').click(function () {
