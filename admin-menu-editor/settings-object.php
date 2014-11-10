@@ -115,9 +115,9 @@ class Admin_Dashboard_Admin_Object extends Runway_Admin_Object {
 
 		foreach ( $menu as $menuitem ) {
 			if ( $menuitem[4] == 'wp-menu-separator' ) {
-				$menuitem['source'] = 'Spacer';
+				$menuitem['source'] = __('Spacer', 'framework');
 			} else {
-				$menuitem['source'] = 'Default';
+				$menuitem['source'] = __('Default', 'framework');
 			}
 
 			$list[$menuitem[2]] = $menuitem;
@@ -138,7 +138,7 @@ class Admin_Dashboard_Admin_Object extends Runway_Admin_Object {
 					}
 				}
 				foreach ( $submenu[$menuitem[2]] as $subitem ) {
-					$subitem['source'] = 'Default';
+					$subitem['source'] = __('Default', 'framework');
 					$subitem['parent'] = $menuitem[2];
 					$list[$menuitem[2] . '/' . $subitem[2]] = $subitem;
 				}
