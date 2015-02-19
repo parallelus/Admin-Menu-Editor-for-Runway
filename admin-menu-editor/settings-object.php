@@ -130,7 +130,8 @@ class Admin_Dashboard_Admin_Object extends Runway_Admin_Object {
 					}
 					$submenu[$menuitem[2]] = array();
 					foreach ( $order as $value ) {
-						$submenu[$menuitem[2]][] = $tmp[$value];
+						if(isset($submenu[$menuitem[2]]) && !empty($submenu[$menuitem[2]]))
+							$submenu[$menuitem[2]][] = $tmp[$value];
 						unset( $tmp[$value] );
 					}
 					if ( count( $tmp ) ) {
