@@ -80,6 +80,16 @@
 				placeholder = $('.sortable-placeholder');
 			});
 
+			if(typeof(cm) == 'object' && cm.hasOwnProperty('menu') && Object.keys(cm.menu).length == 0) {
+					var separator0 = {0:'', 1:'read', 2:'separator0', 3:'', 4:'wp-menu-separator', 'source':'Spacer', is_dynamic:false};
+					$('#menu-to-edit').append(
+						$('.templates #menu-spacer-tmpl')
+							.clone()
+							.tmpl({item: separator0})
+							.addClass('menu-item-depth-0 menu-spacer-template')
+					);
+			}
+
 			for(var key in cm.menu) {
 
 				if(cm.menu[key][4] == 'wp-menu-separator') {

@@ -4,6 +4,11 @@ li[data-is_protected="true"] .menu-item-actions
 	display:none
 }
 
+.menu-item-handle 
+{
+	z-index: 100;
+}
+
 li[data-is_protected="true"] .menu-item-handle
 {
 	cursor:default
