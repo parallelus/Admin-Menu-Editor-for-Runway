@@ -17,7 +17,7 @@ $fields = array(
 $default = array();
 
 $settings = array(
-	'name' => __('Admin Menu', 'framework'),
+	'name' => __('Admin Menu', 'runway'),
 	'option_key' => $shortname.'admin-menu-editor',
 	'fields' => $fields,
 	'default' => $default,

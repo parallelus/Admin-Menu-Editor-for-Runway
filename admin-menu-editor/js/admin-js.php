@@ -24,7 +24,7 @@
 					}
 				}
 				apnd.find("a.item-restore").remove();
-				apnd.find("span.item-controls").append('<span class="item-type"><?php echo __('Default', 'framework'); ?></span>');
+				apnd.find("span.item-controls").append('<span class="item-type"><?php echo __('Default', 'runway'); ?></span>');
 				$('#menu-to-edit li').first().before(apnd).fadeIn('slow');
 			}
 
@@ -44,14 +44,14 @@
 					if(!$('#menu-to-edit .menu-item-template-to-clone').length) return true;
 					currentTime = new Date().getTime();
 				   data_arr = {
-					   0: '<?php echo __('New title', 'framework'); ?>',
+					   0: '<?php echo __('New title', 'runway'); ?>',
 					   1: 'switch_themes',
 					   2: 'index.php?p=' + currentTime,
 					   3: "",
 					   4: '',
 					   5: '',
 					   6: "div",
-					   source: '<?php echo __('Custom', 'framework'); ?>'
+					   source: '<?php echo __('Custom', 'runway'); ?>'
 				   };
 				   $('#menu-to-edit .menu-item-template-to-clone').replaceWith($('.templates #menu-item-tmpl').clone().tmpl({item: data_arr}).addClass(placeholder.removeClass('sortable-placeholder').prop("class")));
 					$("#menu-to-edit .menu-item").find('.menu-item-handle').unbind('click').bind('click', function(){
@@ -168,7 +168,7 @@
 						}
 						$('.deleted-menu-items').append($item);
 						$item.find("span.item-type").remove();
-						$item.find("span.item-controls").append('<a class="item-restore" id="restore-delete-item" title="restore" href=""><?php echo __('Restore', 'framework'); ?></a>');
+						$item.find("span.item-controls").append('<a class="item-restore" id="restore-delete-item" title="restore" href=""><?php echo __('Restore', 'runway'); ?></a>');
 						$item.fadeIn("slow");
 					});
 				}
@@ -289,7 +289,7 @@
 							});
 						}
 					}
-				
+
 					index++;
 				});
 
@@ -330,8 +330,8 @@
 	                },
 	                close: function(event, ui) {
 	                    jQuery('#adminmenuwrap').css({'z-index':'auto'});
-	                },						
-					title: '<?php echo __('Get settings from', 'framework'); ?>...',
+	                },
+					title: '<?php echo __('Get settings from', 'runway'); ?>...',
 					width: 325,
 					modal: true,
 					resizable: false,

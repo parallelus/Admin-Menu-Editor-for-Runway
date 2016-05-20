@@ -33,7 +33,7 @@ class Admin_Dashboard_Admin_Object extends Runway_Admin_Object {
 	function get_converted_menu() {
 
 		global $menu, $submenu;
-		
+
 		if(!$this->cm)
 			$this->cm = get_option( $this->option_key );
 
@@ -89,7 +89,7 @@ class Admin_Dashboard_Admin_Object extends Runway_Admin_Object {
 	function hook_menu() {
 
 		global $menu, $submenu, $cm;
-				
+
 		if(!$this->cm)
 			$this->cm = get_option( $this->option_key );
 		$this->cm['menu'] = stripslashes_deep($this->cm['menu']);
@@ -108,16 +108,16 @@ class Admin_Dashboard_Admin_Object extends Runway_Admin_Object {
 
 		update_option( $this->option_key, $this->cm );
 		$list = array();
-		$sortOrders = array(			
+		$sortOrders = array(
 			'downloads' => array(),
 			'current-theme' => array( 'admin.php?page=options-builder&navigation=new-page' )
 		);
 
 		foreach ( $menu as $menuitem ) {
 			if ( $menuitem[4] == 'wp-menu-separator' ) {
-				$menuitem['source'] = __('Spacer', 'framework');
+				$menuitem['source'] = __('Spacer', 'runway');
 			} else {
-				$menuitem['source'] = __('Default', 'framework');
+				$menuitem['source'] = __('Default', 'runway');
 			}
 
 			$list[$menuitem[2]] = $menuitem;
@@ -139,7 +139,7 @@ class Admin_Dashboard_Admin_Object extends Runway_Admin_Object {
 					}
 				}
 				foreach ( $submenu[$menuitem[2]] as $subitem ) {
-					$subitem['source'] = __('Default', 'framework');
+					$subitem['source'] = __('Default', 'runway');
 					$subitem['parent'] = $menuitem[2];
 					$list[$menuitem[2] . '/' . $subitem[2]] = $subitem;
 				}
@@ -207,7 +207,7 @@ class Admin_Dashboard_Admin_Object extends Runway_Admin_Object {
 					}
 				} else {
 					foreach ( $this->cm['menu'] as $key => $_item ) {
-						if ( isset($item[2]) && $_item[2] == $item[2] ) 
+						if ( isset($item[2]) && $_item[2] == $item[2] )
 						{
 							unset( $this->cm['menu'][$key] );
 						}
@@ -231,7 +231,7 @@ class Admin_Dashboard_Admin_Object extends Runway_Admin_Object {
 			$menu =	array();
 			$submenu = array();
 			foreach ( $this->cm['menu'] as $tkey => $tvalue ) {
-//                $tvalue[0] = stripslashes($tvalue[0]);				
+//                $tvalue[0] = stripslashes($tvalue[0]);
 				if ( empty( $tvalue[4] ) ) {
 					$tvalue[4] = 'menu-top';
 				}
@@ -273,30 +273,30 @@ class Admin_Dashboard_Admin_Object extends Runway_Admin_Object {
 
 	// Add hooks & crooks
 	function add_actions() {
-		
-		
-		
+
+
+
 	}
 
 	function after_settings_init() {
 		/* nothing */
 	}
 
-	function validate_sumbission() {        
-		
+	function validate_sumbission() {
+
 		$this->process_submit();
-		
+
 		$_POST['index'] = 'admin_dashboard';
-		
+
 		// If all is OK
 		return true;
-		
+
 	}
-	
+
 	function load_objects( $data = array() ) {
 
 		$this->data = $this->load_objects();
-		return $this->data;		
+		return $this->data;
 	}
 
 }
@@ -326,7 +326,7 @@ function get_original_menu_full_array( $wp_menu = array(), $wp_submenu = array()
 		}
 	}
 	return $merged;
-	
+
 }
 
 
