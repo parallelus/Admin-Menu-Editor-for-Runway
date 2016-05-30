@@ -4,8 +4,8 @@ class Admin_Dashboard_Admin_Object extends Runway_Admin_Object {
 	public $option_key;
 	private $cm = false;
 
-	function __construct($settings) {
-		parent::__construct($settings);
+	function __construct( $settings ) {
+		parent::__construct( $settings );
 
 		$this->option_key = $settings['option_key'];
 
@@ -17,16 +17,16 @@ class Admin_Dashboard_Admin_Object extends Runway_Admin_Object {
 			delete_option( $this->option_key );
 		} else {
 			if ( isset( $_POST['save'] ) ) {
-				$menu_settings['menu']     = isset($_POST['menu'])? $_POST['menu'] : '';
-				$menu_settings['removed']  = isset($_POST['removed'])? $_POST['removed'] : '';
-				$menu_settings['imported'] = isset($_POST['imported'])? $_POST['imported'] : '';
-				$menu_settings['order']    = isset($_POST['order'])? $_POST['order'] : '';
+				$menu_settings['menu']     = isset( $_POST['menu'] ) ? $_POST['menu'] : '';
+				$menu_settings['removed']  = isset( $_POST['removed'] ) ? $_POST['removed'] : '';
+				$menu_settings['imported'] = isset( $_POST['imported'] ) ? $_POST['imported'] : '';
+				$menu_settings['order']    = isset( $_POST['order'] ) ? $_POST['order'] : '';
 				$this->process_submit( $menu_settings );
 			}
 		}
 	}
 
-	function init($settings) {
+	function init( $settings ) {
 
 	}
 
@@ -34,15 +34,15 @@ class Admin_Dashboard_Admin_Object extends Runway_Admin_Object {
 
 		global $menu, $submenu;
 
-		if(!$this->cm)
+		if( ! $this->cm )
 			$this->cm = get_option( $this->option_key );
 
-		if ( !$this->cm ) {
+		if( ! $this->cm ) {
 			$this->cm = array(
-				'menu' => array(),
-				'removed' => array(),
-				'imported' => array(),
-			);
+							'menu' 		=> array(),
+							'removed' 	=> array(),
+							'imported' 	=> array(),
+						);
 		}
 		$list = array();
 		foreach ( $menu as $menuitem ) {
@@ -80,7 +80,7 @@ class Admin_Dashboard_Admin_Object extends Runway_Admin_Object {
 	// update menu-settings option. option_key => 'cm'
 	function process_submit( $menu_settings = array() ) {
 
-		if ( isset( $menu_settings ) && !empty( $menu_settings ) ) {
+		if ( isset( $menu_settings ) && ! empty( $menu_settings ) ) {
 			update_option( $this->option_key, $menu_settings );
 		}
 
@@ -94,7 +94,7 @@ class Admin_Dashboard_Admin_Object extends Runway_Admin_Object {
 			$this->cm = get_option( $this->option_key );
 		$this->cm['menu'] = stripslashes_deep($this->cm['menu']);
 
-		if ( !$this->cm ) {
+		if ( ! $this->cm ) {
 			$this->cm = array(
 				'menu' => array(),
 				'removed' => array(),
@@ -115,9 +115,9 @@ class Admin_Dashboard_Admin_Object extends Runway_Admin_Object {
 
 		foreach ( $menu as $menuitem ) {
 			if ( $menuitem[4] == 'wp-menu-separator' ) {
-				$menuitem['source'] = __('Spacer', 'runway');
+				$menuitem['source'] = __( 'Spacer', 'runway' );
 			} else {
-				$menuitem['source'] = __('Default', 'runway');
+				$menuitem['source'] = __( 'Default', 'runway' );
 			}
 
 			$list[$menuitem[2]] = $menuitem;
@@ -130,7 +130,7 @@ class Admin_Dashboard_Admin_Object extends Runway_Admin_Object {
 					}
 					$submenu[$menuitem[2]] = array();
 					foreach ( $order as $value ) {
-						if(isset($submenu[$menuitem[2]]) && !empty($submenu[$menuitem[2]]))
+						if( isset( $submenu[$menuitem[2] ]) && ! empty( $submenu[$menuitem[2]] ) )
 							$submenu[$menuitem[2]][] = $tmp[$value];
 						unset( $tmp[$value] );
 					}
@@ -139,14 +139,14 @@ class Admin_Dashboard_Admin_Object extends Runway_Admin_Object {
 					}
 				}
 				foreach ( $submenu[$menuitem[2]] as $subitem ) {
-					$subitem['source'] = __('Default', 'runway');
+					$subitem['source'] = __( 'Default', 'runway' );
 					$subitem['parent'] = $menuitem[2];
 					$list[$menuitem[2] . '/' . $subitem[2]] = $subitem;
 				}
 			}
 		}
 
-		$this->cm['imported'] =	(isset($this->cm['imported']) )? $this->cm['imported'] : array();
+		$this->cm['imported'] =	( isset( $this->cm['imported'] ) ) ? $this->cm['imported'] : array();
 		$to_adding_items =	array_diff_key( (array)$list, (array)$this->cm['imported'] );
 
 		$top_item_names =	array();
@@ -227,7 +227,7 @@ class Admin_Dashboard_Admin_Object extends Runway_Admin_Object {
 
 		global $menu_items_icons;
 		// rewrite wordpress menu by custom
-		if ( isset( $this->cm['menu'] ) && !empty( $this->cm['menu'] ) ) {
+		if ( isset( $this->cm['menu'] ) && ! empty( $this->cm['menu'] ) ) {
 			$menu =	array();
 			$submenu = array();
 			foreach ( $this->cm['menu'] as $tkey => $tvalue ) {
@@ -235,9 +235,9 @@ class Admin_Dashboard_Admin_Object extends Runway_Admin_Object {
 				if ( empty( $tvalue[4] ) ) {
 					$tvalue[4] = 'menu-top';
 				}
-				if ( isset($tvalue['is_dynamic']) && $tvalue['is_dynamic'] == 'true' && isset( $menu_items_icons[$tvalue[2]] ) ) {
+				if ( isset( $tvalue['is_dynamic'] ) && $tvalue['is_dynamic'] == 'true' && isset( $menu_items_icons[$tvalue[2]] ) ) {
 					if ( empty( $menu_items_icons[$tvalue[2]] ) ) {
-						$tvalue[6] = admin_url('images/generic.png');
+						$tvalue[6] = admin_url( 'images/generic.png' );
 					} else {
 						if ( strstr( $menu_items_icons[$tvalue[2]], 'http://' ) ) {
 							$tvalue[6] = $menu_items_icons[$tvalue[2]];

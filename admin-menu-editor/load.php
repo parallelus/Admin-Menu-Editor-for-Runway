@@ -17,30 +17,30 @@ $fields = array(
 $default = array();
 
 $settings = array(
-	'name' => __('Admin Menu', 'runway'),
-	'option_key' => $shortname.'admin-menu-editor',
-	'fields' => $fields,
-	'default' => $default,
-	'parent_menu' => 'framework-options',
+	'name' 			=> __( 'Admin Menu', 'runway' ),
+	'option_key' 	=> $shortname.'admin-menu-editor',
+	'fields' 		=> $fields,
+	'default'		=> $default,
+	'parent_menu' 	=> 'framework-options',
 	//'menu_permissions' => 5,
-	'file' => __FILE__,
-	'js' => array(
-		FRAMEWORK_URL.'extensions/admin-menu-editor/js/menu-nav.custom.dev.js',
-		FRAMEWORK_URL.'framework/js/jquery.tmpl.min.js',
-		'jquery',
-		'utils',
-		'jquery-ui-core',
-		'jquery-ui-widget',
-		'jquery-ui-mouse',
-		'jquery-ui-sortable',
-		'jquery-ui-draggable',
-		'jquery-ui-dialog',
-		'jquery-ui-position',
-	),
-	'css' => array(
-		FRAMEWORK_URL.'framework/css/smoothness/jquery-ui-1.8.23.custom.css',
-		FRAMEWORK_URL.'extensions/admin-menu-editor/css/style.css',
-	)
+	'file' 			=> __FILE__,
+	'js' 			=> array(
+						FRAMEWORK_URL.'extensions/admin-menu-editor/js/menu-nav.custom.dev.js',
+						FRAMEWORK_URL.'framework/js/jquery.tmpl.min.js',
+						'jquery',
+						'utils',
+						'jquery-ui-core',
+						'jquery-ui-widget',
+						'jquery-ui-mouse',
+						'jquery-ui-sortable',
+						'jquery-ui-draggable',
+						'jquery-ui-dialog',
+						'jquery-ui-position',
+					),
+	'css' 			=> array(
+						FRAMEWORK_URL.'framework/css/smoothness/jquery-ui-1.8.23.custom.css',
+						FRAMEWORK_URL.'extensions/admin-menu-editor/css/style.css',
+					)
 );
 global $admin_Dashboard_Admin, $admin_dashboard_settings, $extm;
 
