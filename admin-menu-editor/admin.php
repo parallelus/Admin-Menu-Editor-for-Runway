@@ -12,7 +12,7 @@ if( isset( $_GET['reset'] ) && $_GET['reset'] ) {
 <div class='update' id='message-success'></div>
 
 <div id='dialog'>
-	<select id='check-default' style="width: 295px;"></select>
+	<select id='check-default' style="width: 294px;"></select>
 </div>
 
 <div class="templates" style="display: none;">

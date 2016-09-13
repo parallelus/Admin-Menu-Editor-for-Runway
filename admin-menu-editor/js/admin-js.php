@@ -32,6 +32,7 @@
 				if(elm.closest('.deleted-menu-items').length) return false;
 				var $item = elm.closest('li');
 				var $editForemoved = $item.find('.menu-item-settings').slideToggle('slow');
+				elm.closest('.menu-item').toggleClass('menu-item-edit-active');
 
 				return false;
 			}
@@ -219,6 +220,8 @@
 					item_remove(toRemove[key]);
 				}
 
+				$item.toggleClass('menu-item-edit-active');
+
 				$('#restore-delete-item').unbind('click');
 				$('body').on('click', '#restore-delete-item', function(e){
 					e.preventDefault();
@@ -323,13 +326,15 @@
 
 			function settings_from_default(cm, elm, e){
 				var item = elm.closest('li');
+				var adminMenuZIndex = jQuery('#adminmenuwrap').css('z-index');
+
 				e.preventDefault();
 				$("#dialog").dialog({
 	                open: function(event, ui) {
 	                    jQuery('#adminmenuwrap').css({'z-index':0});
 	                },
 	                close: function(event, ui) {
-	                    jQuery('#adminmenuwrap').css({'z-index':'auto'});
+	                    jQuery('#adminmenuwrap').css({'z-index': adminMenuZIndex});
 	                },
 					title: '<?php echo __('Get settings from', 'runway'); ?>...',
 					width: 325,
