@@ -2,7 +2,7 @@
 	(function ($) {
 		$(function () {
 
-			var cm = $.parseJSON('<?php echo mysql_real_escape_string( strip_tags( json_encode( $cm ) ) ); ?>');
+			var cm = $.parseJSON('<?php echo $wpdb->_real_escape( strip_tags( json_encode( $cm ) ) ); ?>');
 
 			if(!cm['removed']){
 				cm['removed'] = [];

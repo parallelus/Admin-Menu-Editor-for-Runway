@@ -5,7 +5,7 @@ if( isset( $_GET['reset'] ) && $_GET['reset'] ) {
 }
 ?>
 
-<?php global $admin_Dashboard_Admin, $admin_dashboard_settings, $menu, $submenu, $wp_roles, $orig_menu, $orig_sub_menu, $wp_roles, $cm; ?>
+<?php global $admin_Dashboard_Admin, $admin_dashboard_settings, $menu, $submenu, $wp_roles, $orig_menu, $orig_sub_menu, $wp_roles, $cm, $wpdb; ?>
 <?php include_once FRAMEWORK_DIR.'extensions/admin-menu-editor/js/admin-js.php'; ?>
 
 <div class="debug" style="width: 100%"></div>
