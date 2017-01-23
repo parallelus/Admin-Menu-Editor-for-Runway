@@ -2,7 +2,7 @@
 	(function ($) {
 		$(function () {
 
-			var cm = $.parseJSON('<?php echo mysql_real_escape_string( strip_tags( json_encode( $cm ) ) ); ?>');
+			var cm = $.parseJSON('<?php echo $wpdb->_real_escape( strip_tags( json_encode( $cm ) ) ); ?>');
 
 			if(!cm['removed']){
 				cm['removed'] = [];
@@ -24,7 +24,7 @@
 					}
 				}
 				apnd.find("a.item-restore").remove();
-				apnd.find("span.item-controls").append('<span class="item-type"><?php echo __('Default', 'framework'); ?></span>');
+				apnd.find("span.item-controls").append('<span class="item-type"><?php echo __('Default', 'runway'); ?></span>');
 				$('#menu-to-edit li').first().before(apnd).fadeIn('slow');
 			}
 
@@ -32,6 +32,7 @@
 				if(elm.closest('.deleted-menu-items').length) return false;
 				var $item = elm.closest('li');
 				var $editForemoved = $item.find('.menu-item-settings').slideToggle('slow');
+				elm.closest('.menu-item').toggleClass('menu-item-edit-active');
 
 				return false;
 			}
@@ -44,14 +45,14 @@
 					if(!$('#menu-to-edit .menu-item-template-to-clone').length) return true;
 					currentTime = new Date().getTime();
 				   data_arr = {
-					   0: '<?php echo __('New title', 'framework'); ?>',
+					   0: '<?php echo __('New title', 'runway'); ?>',
 					   1: 'switch_themes',
 					   2: 'index.php?p=' + currentTime,
 					   3: "",
 					   4: '',
 					   5: '',
 					   6: "div",
-					   source: '<?php echo __('Custom', 'framework'); ?>'
+					   source: '<?php echo __('Custom', 'runway'); ?>'
 				   };
 				   $('#menu-to-edit .menu-item-template-to-clone').replaceWith($('.templates #menu-item-tmpl').clone().tmpl({item: data_arr}).addClass(placeholder.removeClass('sortable-placeholder').prop("class")));
 					$("#menu-to-edit .menu-item").find('.menu-item-handle').unbind('click').bind('click', function(){
@@ -79,6 +80,16 @@
 			$("#menu-to-edit").bind("sortstart", function(event, ui) {
 				placeholder = $('.sortable-placeholder');
 			});
+
+			if(typeof(cm) == 'object' && cm.hasOwnProperty('menu') && Object.keys(cm.menu).length == 0) {
+					var separator0 = {0:'', 1:'read', 2:'separator0', 3:'', 4:'wp-menu-separator', 'source':'Spacer', is_dynamic:false};
+					$('#menu-to-edit').append(
+						$('.templates #menu-spacer-tmpl')
+							.clone()
+							.tmpl({item: separator0})
+							.addClass('menu-item-depth-0 menu-spacer-template')
+					);
+			}
 
 			for(var key in cm.menu) {
 
@@ -158,7 +169,7 @@
 						}
 						$('.deleted-menu-items').append($item);
 						$item.find("span.item-type").remove();
-						$item.find("span.item-controls").append('<a class="item-restore" id="restore-delete-item" title="restore" href=""><?php echo __('Restore', 'framework'); ?></a>');
+						$item.find("span.item-controls").append('<a class="item-restore" id="restore-delete-item" title="restore" href=""><?php echo __('Restore', 'runway'); ?></a>');
 						$item.fadeIn("slow");
 					});
 				}
@@ -208,6 +219,8 @@
 				for(var key in toRemove) {
 					item_remove(toRemove[key]);
 				}
+
+				$item.toggleClass('menu-item-edit-active');
 
 				$('#restore-delete-item').unbind('click');
 				$('body').on('click', '#restore-delete-item', function(e){
@@ -279,7 +292,7 @@
 							});
 						}
 					}
-				
+
 					index++;
 				});
 
@@ -287,7 +300,8 @@
 					menu: _menu,
 					save: true,
 					removed: data.removed,
-					imported: cm.imported
+					imported: cm.imported,
+					nonce: "<?php echo wp_create_nonce( 'admin-menu-save' ); ?>"
 				};
 
 				$.ajax({
@@ -313,15 +327,17 @@
 
 			function settings_from_default(cm, elm, e){
 				var item = elm.closest('li');
+				var adminMenuZIndex = jQuery('#adminmenuwrap').css('z-index');
+
 				e.preventDefault();
 				$("#dialog").dialog({
 	                open: function(event, ui) {
 	                    jQuery('#adminmenuwrap').css({'z-index':0});
 	                },
 	                close: function(event, ui) {
-	                    jQuery('#adminmenuwrap').css({'z-index':'auto'});
-	                },						
-					title: '<?php echo __('Get settings from', 'framework'); ?>...',
+	                    jQuery('#adminmenuwrap').css({'z-index': adminMenuZIndex});
+	                },
+					title: '<?php echo __('Get settings from', 'runway'); ?>...',
 					width: 325,
 					modal: true,
 					resizable: false,
