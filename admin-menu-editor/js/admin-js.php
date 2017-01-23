@@ -300,7 +300,8 @@
 					menu: _menu,
 					save: true,
 					removed: data.removed,
-					imported: cm.imported
+					imported: cm.imported,
+					nonce: "<?php echo wp_create_nonce( 'admin-menu-save' ); ?>"
 				};
 
 				$.ajax({

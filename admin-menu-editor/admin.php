@@ -57,7 +57,7 @@ if( isset( $_GET['reset'] ) && $_GET['reset'] ) {
 			</p>
 			<p class="field-permissions permissions permissions-wide">
 				<label for="edit-menu-item-permissions-21">
-					<?php echo __('Permissions', 'runway'); ?><br>
+					<?php echo __( 'Permissions', 'runway' ); ?><br>
 					<select id='edit-menu-item-permissions-21' style="width:97%;" {{if item['is_protected']}}disabled="disabled"{{/if}}>
 						<?php   global $wp_roles;
 								foreach ( $wp_roles->roles[administrator][capabilities] as $cap => $name ):
@@ -65,7 +65,7 @@ if( isset( $_GET['reset'] ) && $_GET['reset'] ) {
 									<option value="<?php echo $cap ?>" <?php echo "{{if item[1] == '$cap'}}selected='true'{{/if}}"; ?>><?php echo ucfirst( $cap_name ); ?></option>
 						<?php 	endforeach; ?>
 					</select><br>
-					<span class="description"><?php echo __('Capability to access this page.', 'runway'); ?></span>
+					<span class="description"><?php echo __( 'Capability to access this page.', 'runway' ); ?></span>
 				</label>
 			</p>
 			<p class="field-url description description-wide">

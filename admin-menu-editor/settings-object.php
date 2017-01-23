@@ -13,10 +13,10 @@ class Admin_Dashboard_Admin_Object extends Runway_Admin_Object {
 		// catching ajax-query and create $menu_settings array
 		$menu_settings = array( 'menu' => array(), 'removed' => array() ); // contains base menu items and removed menu items
 
-		if ( isset( $_REQUEST['reset'] ) ) {
+		if ( isset( $_REQUEST['reset'] ) && isset( $_POST['admin-menu-reset-nonce'] ) && wp_verify_nonce( $_POST['admin-menu-reset-nonce'], 'admin-menu-reset' ) ) {
 			delete_option( $this->option_key );
 		} else {
-			if ( isset( $_POST['save'] ) ) {
+			if ( isset( $_POST['save'] ) && isset( $_POST['nonce'] ) && wp_verify_nonce( $_POST['nonce'], 'admin-menu-save' ) ) {
 				$menu_settings['menu']     = isset( $_POST['menu'] ) ? $_POST['menu'] : '';
 				$menu_settings['removed']  = isset( $_POST['removed'] ) ? $_POST['removed'] : '';
 				$menu_settings['imported'] = isset( $_POST['imported'] ) ? $_POST['imported'] : '';
