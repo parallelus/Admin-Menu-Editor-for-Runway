@@ -2,7 +2,7 @@
 /*
 	Extension Name: Admin Menu Editor
 	Extension URI: https://github.com/parallelus/Admin-Menu-Editor-for-Runway
-	Version: 0.8.1
+	Version: 0.8.2
 	Description: Manage your WordPress admin menus and create custom theme menus.
 	Author: Parallelus
 	Author URI: http://para.llel.us
